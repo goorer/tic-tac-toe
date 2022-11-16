@@ -3,15 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "http://goorer.github.io/tic-tac-toe",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint --ext .tsx,.ts src/",
     "lintfix": "npm run lint -- --fix",
-    "format": "prettier --write \"**/*.+(js|json|yml|ts|tsx)\"",
-    "deploy": "gh-pages -d dist"
+    "format": "prettier --write \"**/*.+(js|json|yml|ts|tsx)\""
   },
   "dependencies": {
     "@emotion/css": "^11.10.5",
