@@ -13,6 +13,8 @@
 
 単に三目並べ
 
+## [Stackblitz](https://stackblitz.com/edit/goorer-tic-tac-toe)
+
 ## 参考
 
 - [piyoko さん](https://zenn.dev/longbridge)
