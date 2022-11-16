@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
+import { MouseEvent, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-// import List from "@mui/material/List";
-// import ListItem from "@mui/material/ListItem";
-// import ListItemButton from "@mui/material/ListItemButton";
-// import ListItemIcon from "@mui/material/ListItemIcon";
-// import ListItemText from "@mui/material/ListItemText";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
 import { css } from "@emotion/react";
 import { TypeHistory } from "./types";
 
@@ -35,20 +34,17 @@ const buttonStyle = css({
 });
 
 export type Prop = {
-  history: Array<TypeHistory>;
+  histories: Array<TypeHistory>;
   onClickResset: () => void;
+  onClickRewind: (e: MouseEvent<HTMLInputElement>) => void;
 };
 
 function Menu(props: Prop) {
-  const { history, onClickResset } = props;
+  const { histories, onClickResset, onClickRewind } = props;
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => setOpen(true);
   const handleClickClose = () => setOpen(false);
 
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log(`${history}`);
-  });
   return (
     <div>
       <Modal
@@ -82,6 +78,28 @@ function Menu(props: Prop) {
         </Box>
       </Modal>
       <div css={menuStyle}>
+        <Box>
+          <Typography variant="h6">History</Typography>
+          <List
+            id="list"
+            css={css({
+              overflowY: "scroll",
+              height: "100px",
+              width: "300px",
+              display: `${histories.length === 0 ? "none" : "block"}`,
+            })}
+          >
+            {histories.map((history, index) => (
+              <ListItem disablePadding>
+                <ListItemButton id={index.toString()} onClick={onClickRewind}>
+                  <ListItemText
+                    primary={`TURN ${index + 1}: ${history.turn ? "O" : "X"}`}
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
         <Button variant="text" onClick={handleClickOpen}>
           Reset
         </Button>
